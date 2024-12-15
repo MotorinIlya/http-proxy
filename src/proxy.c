@@ -64,6 +64,7 @@ void accept_new_client(int server_socket)
             close(server_socket);
             exit(EXIT_FAILURE);
         }
+
         char *buff = calloc(MAX_BUFFER_SIZE, sizeof(char));
         sprintf(buff, "Client connected from %s:%d", inet_ntoa(client_addr.sin_addr),
                                                         ntohs(client_addr.sin_port));
@@ -72,6 +73,7 @@ void accept_new_client(int server_socket)
 
         char *request = calloc(MAX_BUFFER_SIZE, sizeof(char));
         assert(request != NULL);
+        
         int err = read_request(client_socket, request);
         if (err == EXIT_FAILURE) 
         {
